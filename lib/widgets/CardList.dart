@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:campusmatch/screens/Paso3Cuenta.dart';
+import 'package:campusmatch/screens/Feed.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FormPaso3Cuenta extends StatelessWidget {
@@ -21,7 +21,6 @@ class FormPaso3Cuenta extends StatelessWidget {
           SizedBox(height: 5),
           Text(
             'Selecciona máximo 6 intereses',
-            textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
@@ -62,10 +61,8 @@ class FormPaso3Cuenta extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Paso3Cuenta()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Feed()));
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -100,22 +97,21 @@ class ListCardsScreen extends StatefulWidget {
 }
 
 class _ListCardsScreenState extends State<ListCardsScreen> {
-  @override
-  List<String> image = [
-    'socks',
-    'socks',
-    'socks',
-    'socks',
-    'socks',
+  List<String> cardType = [
+    'Futbol',
+    'Peliculas',
+    'Comida',
+    'Salidas',
+    'Carros'
   ];
 
-  List<String> title = ['Futbol', 'Peliculas', 'Comida', 'Salidas', 'Carros'];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: image.length,
+        itemCount: cardType.length,
         itemBuilder: (BuildContext context, int index) {
-          return card(image[index], title[index], context);
+          return card(cardType[index], cardType[index], context);
         },
       ),
     );
@@ -123,56 +119,76 @@ class _ListCardsScreenState extends State<ListCardsScreen> {
 }
 
 Widget card(String image, String title, BuildContext context) {
-  return Card(
-    color: const Color.fromARGB(255, 255, 255, 255),
-    borderOnForeground: true,
-    elevation: 2.0,
-    margin: const EdgeInsets.only(top: 15.0),
-    child: Container(
-      padding: EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Icon(
-                  FontAwesomeIcons.image,
-                  size: 35,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      side: BorderSide(color: Colors.yellow, width: 3),
-                    ),
-                    backgroundColor: Colors.yellow,
+  IconData getFontAwesomeIcon(String image) {
+    print(image);
+    switch (image) {
+      case 'Futbol':
+        return FontAwesomeIcons.soccerBall;
+      case 'Peliculas':
+        return FontAwesomeIcons.film;
+      case 'Comida':
+        return FontAwesomeIcons.hamburger;
+      case 'Salidas':
+        return FontAwesomeIcons.personWalking;
+      case 'Carros':
+        return FontAwesomeIcons.car;
+      default:
+        return FontAwesomeIcons.question;
+    }
+  }
+
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 22.0),
+    child: Card(
+      color: Colors.white,
+      elevation: 1.0,
+      margin: const EdgeInsets.only(top: 15.0),
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Icon(
+                    getFontAwesomeIcon(image), // Utilizamos image directamente
+                    size: 35,
                   ),
-                  child: const Icon(Icons.add)),
-            ],
-          ),
-        ],
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        side: BorderSide(color: Colors.yellow, width: 3),
+                      ),
+                      backgroundColor: Colors.yellow,
+                    ),
+                    child: const Icon(Icons.add)),
+              ],
+            ),
+          ],
+        ),
       ),
     ),
   );

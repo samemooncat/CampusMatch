@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "680655234944",
+    "project_id": "campusmatchuni",
+    "storage_bucket": "campusmatchuni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680655234944:android:0e2311173afd52a0ab8365",
+        "android_client_info": {
+          "package_name": "com.example.campusmatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7DIbUMQp0meEbMJNPBu2e7XCc5OG5LgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
